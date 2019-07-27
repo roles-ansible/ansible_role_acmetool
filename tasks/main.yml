@@ -51,3 +51,11 @@
   tags:
     - configuration
     - acme
+
+
+- name: Reload systemd and enable acmetool timer unit
+  systemd:
+    name: 'acmetool.timer'
+    daemon_reload: yes
+    enabled: yes
+    state: started
