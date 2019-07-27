@@ -1,0 +1,8 @@
+---
+
+- name: Reload systemd and enable units
+  systemd:
+    name: 'acme.timer'
+    daemon_reload: yes
+    enabled: yes
+    state: started

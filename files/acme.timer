@@ -1,0 +1,11 @@
+[Unit]
+Description = Timer unit to update Let's Encrypt certificates once a day
+After = connection.service
+
+[Timer]
+OnCalendar = *-*-* 20:00:00
+Unit = acme.service
+Persistent = True
+
+[Install]
+WantedBy = multi-user.target

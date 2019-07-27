@@ -1,0 +1,71 @@
+---
+
+- name: Install acmetool
+  package:
+    name: 'acmetool'
+    state: present
+  tags:
+    - installation
+
+
+- name: Install systemd units for acmetool
+  template:
+    src: 'files/{{ item }}'
+    dest: '/etc/systemd/system/{{ item }}'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+  with_items:
+    - 'acme.service'
+    - 'acme.timer'
+  notify:
+    - Reload systemd and enable units
+  tags:
+    - installation
+    - configuration
+    - acme
+
+
+- name: Create directory for acmetool response file
+  file:
+    name: '/var/lib/acme/conf'
+    state: directory
+    owner: root
+    group: root
+    mode: 'u=rwx,g=rx,o=rx'
+  tags:
+    - installation
+
+
+- name: Copy acmetool response file
+  template:
+    src: 'files/response-file.yml.j2'
+    dest: '/var/lib/acme/conf/responses'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+  tags:
+    - configuration
+    - acme
+
+
+- name: Perform acmetool quickstart
+  command: acmetool quickstart --expert
+  args:
+    creates: '/var/lib/acme/conf/target'
+  tags:
+    - configuration
+    - operation
+    - acme
+
+
+- name: Copy hook to enable acmetool to restart services
+  copy:
+    src: 'files/restart'
+    dest: '/usr/libexec/acme/hooks/'
+    owner: root
+    group: root
+    mode: 'u=rx,g=rx,o=rx'
+  tags:
+    - configuration
+    - acme

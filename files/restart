@@ -1,0 +1,48 @@
+#!/bin/sh
+## This script is similar to the default 'reload' script by acmetool but
+## for services that need a full restart.
+
+# This file restarts services when the preferred certificate for a hostname
+# changes. A list of commonly used daemons is preconfigured. You can override
+# this list by setting $SERVICES in /etc/{default,conf.d}/acme-restart.
+#
+# Configuration options:
+#   /etc/{default,conf.d}/acme-restart
+#     Sourced if they exist. Specify variables here.
+#     Please note that most of the time, you don't need to specify anything.
+#
+#   $SERVICES
+#     Space-separated list of daemons to restart.
+#     Append with SERVICES="$SERVICES mydaemon".
+
+###############################################################################
+set -e
+EVENT_NAME="$1"
+[ "$EVENT_NAME" = "live-updated" ] || exit 42
+
+SERVICES=""
+[ -e "/etc/default/acme-restart" ] && . /etc/default/acme-restart
+[ -e "/etc/conf.d/acme-restart" ] && . /etc/conf.d/acme-restart
+[ -z "$ACME_STATE_DIR" ] && ACME_STATE_DIR="/var/lib/acme"
+
+# Restart services.
+if which service >/dev/null 2>/dev/null; then
+  for x in $SERVICES; do
+    service "$x" restart >/dev/null 2>/dev/null || true
+  done
+  exit 0
+fi
+
+if which systemctl >/dev/null 2>/dev/null; then
+  for x in $SERVICES; do
+    [ -e "/lib/systemd/system/$x.service" -o -e "/etc/systemd/system/$x.service" ] && systemctl restart "$x.service" >/dev/null 2>/dev/null || true
+  done
+  exit 0
+fi
+
+if [ -e "/etc/init.d" ]; then
+  for x in $SERVICES; do
+    /etc/init.d/$x restart >/dev/null 2>/dev/null || true
+  done
+  exit 0
+fi
