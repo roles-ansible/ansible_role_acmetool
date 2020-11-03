@@ -6,6 +6,18 @@
     state: present
   tags:
     - installation
+    - acmetool
+
+
+# Todo: Reconsider best practice
+#- name: Remove acmetool snippet for nginx from package installation
+#  file:
+#    path: '/etc/nginx/snippets/acmetool.conf'
+#    state: absent
+#  tags:
+#    - installation
+#    - configuration
+#    - acmetool
 
 
 - name: Create directory for acmetool response file
@@ -17,6 +29,7 @@
     mode: 'u=rwx,g=rx,o=rx'
   tags:
     - installation
+    - acmetool
 
 
 - name: Copy acmetool response file
@@ -28,7 +41,8 @@
     mode: 'u=rw,g=r,o=r'
   tags:
     - configuration
-    - acme
+    - acmetool
+# Todo: with_first_found?
 
 
 - name: Perform acmetool quickstart
@@ -38,19 +52,19 @@
   tags:
     - configuration
     - operation
-    - acme
+    - acmetool
 
 
 - name: Copy hook to enable acmetool to restart services
   copy:
     src: 'files/restart'
-    dest: '/usr/libexec/acme/hooks/'
+    dest: '/etc/acme/hooks/'
     owner: root
     group: root
     mode: 'u=rx,g=rx,o=rx'
   tags:
     - configuration
-    - acme
+    - acmetool
 
 
 - name: Reload systemd and enable acmetool timer unit
@@ -59,3 +73,6 @@
     daemon_reload: yes
     enabled: yes
     state: started
+  tags:
+    - operation
+    - acmetool
