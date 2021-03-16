@@ -1,7 +1,7 @@
 ---
 
 - name: Install acmetool
-  package:
+  ansible.builtin.package:
     name: 'acmetool'
     state: present
   tags:
@@ -11,7 +11,7 @@
 
 # Todo: Reconsider best practice
 #- name: Remove acmetool snippet for nginx from package installation
-#  file:
+#  ansible.builtin.file:
 #    path: '/etc/nginx/snippets/acmetool.conf'
 #    state: absent
 #  tags:
@@ -21,7 +21,7 @@
 
 
 - name: Create directory for acmetool response file
-  file:
+  ansible.builtin.file:
     name: '/var/lib/acme/conf'
     state: directory
     owner: root
@@ -33,7 +33,7 @@
 
 
 - name: Copy acmetool response file
-  template:
+  ansible.builtin.template:
     src: 'files/response-file.yml.j2'
     dest: '/var/lib/acme/conf/responses'
     owner: root
@@ -42,11 +42,12 @@
   tags:
     - configuration
     - acmetool
-# Todo: with_first_found?
+    # Todo: with_first_found? 
+    # consider usage of loop:
 
 
 - name: Perform acmetool quickstart
-  command: acmetool quickstart --expert
+  ansible.builtin.command: acmetool quickstart --expert
   args:
     creates: '/var/lib/acme/conf/target'
   tags:
@@ -56,7 +57,7 @@
 
 
 - name: Copy hook to enable acmetool to restart services
-  copy:
+  ansible.builtin.copy:
     src: 'files/restart'
     dest: '/etc/acme/hooks/'
     owner: root
@@ -68,7 +69,7 @@
 
 
 - name: Reload systemd and enable acmetool timer unit
-  systemd:
+  ansible.builtin.systemd:
     name: 'acmetool.timer'
     daemon_reload: yes
     enabled: yes
