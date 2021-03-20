@@ -1,4 +1,4 @@
-[![Ansible Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/acmetool) [![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_acmetool/blob/main/LICENSE)
+[![Ansible Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/acmetool) [![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_acmetool/blob/main/LICENCE)
 
  Acmetool LE client
 ==================
@@ -15,8 +15,18 @@ Install and configure the `acmetool` LE client.
 * ``submodules_versioncheck:`` (Default: ``false``):
   Enable basic versionscheck. *(``true`` is recomended)*
 
-References
-----------
+ References
+------------
 
 * [acmetool](https://github.com/hlandau/acmetool)
 * [acmetool user's guide](https://hlandau.github.io/acmetool/userguide)
+
+ Testing
+---------
+We are using the following github actions for testing and releasing to ansible galaxy.
+
+| Action Status | Marketplace |
+| ------------- | ----------- |
+| [![Ansible Lint check](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/ansible-linting-check.yml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/ansible-linting-check.yml) | [ansible-lint](https://github.com/marketplace/actions/ansible-lint) |
+| [![Galaxy release](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/galaxy.yml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/galaxy.yml) | [publish-ansible-role-to-galaxy](https://github.com/marketplace/actions/publish-ansible-role-to-galaxy) |
+| [![Yamllint GitHub Actions](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/yamllint.yaml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/yamllint.yaml) | [yamllint-github-action](https://github.com/marketplace/actions/yamllint-github-action) |
