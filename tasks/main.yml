@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks: versioncheck.yml
+- name: Perform optional versionscheck
+  ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
 - name: Install acmetool
@@ -9,16 +10,6 @@
   tags:
     - installation
     - acmetool
-
-# Todo: Reconsider best practice
-#- name: Remove acmetool snippet for nginx from package installation
-#  ansible.builtin.file:
-#    path: '/etc/nginx/snippets/acmetool.conf'
-#    state: absent
-#  tags:
-#    - installation
-#    - configuration
-#    - acmetool
 
 - name: Create directory for acmetool response file
   ansible.builtin.file:
@@ -67,8 +58,8 @@
 - name: Reload systemd and enable acmetool timer unit
   ansible.builtin.systemd:
     name: 'acmetool.timer'
-    daemon_reload: yes
-    enabled: yes
+    daemon_reload: true
+    enabled: true
     state: started
   tags:
     - operation
