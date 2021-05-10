@@ -4,6 +4,7 @@
   when: submodules_versioncheck|bool
 
 - name: Install acmetool
+  become: true
   ansible.builtin.package:
     name: 'acmetool'
     state: present
@@ -12,6 +13,7 @@
     - acmetool
 
 - name: Create directory for acmetool response file
+  become: true
   ansible.builtin.file:
     name: '/var/lib/acme/conf'
     state: directory
@@ -23,6 +25,7 @@
     - acmetool
 
 - name: Copy acmetool response file
+  become: true
   ansible.builtin.template:
     src: 'files/response-file.yml.j2'
     dest: '/var/lib/acme/conf/responses'
@@ -36,6 +39,7 @@
     # consider usage of loop:
 
 - name: Perform acmetool quickstart
+  become: true
   ansible.builtin.command: acmetool quickstart --expert
   args:
     creates: '/var/lib/acme/conf/target'
@@ -45,6 +49,7 @@
     - acmetool
 
 - name: Copy hook to enable acmetool to restart services
+  become: true
   ansible.builtin.copy:
     src: 'files/restart'
     dest: '/etc/acme/hooks/'
@@ -56,6 +61,7 @@
     - acmetool
 
 - name: Reload systemd and enable acmetool timer unit
+  become: true
   ansible.builtin.systemd:
     name: 'acmetool.timer'
     daemon_reload: true
