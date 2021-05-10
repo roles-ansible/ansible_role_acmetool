@@ -21,6 +21,10 @@ Install and configure the `acmetool` LE client.
 * [acmetool](https://github.com/hlandau/acmetool)
 * [acmetool user's guide](https://hlandau.github.io/acmetool/userguide)
 
+ Good to know
+--------------
+If you are using debian buster, you are probably interested in a more up to date version of acmetool. Have a look at the [do1jlri.acmetool_fix](https://galaxy.ansible.com/do1jlr/acmetool_fix) role, that will install a specific version of acmetool on debian based systems.
+
  Testing
 ---------
 We are using the following github actions for testing and releasing to ansible galaxy.
