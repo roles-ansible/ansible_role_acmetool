@@ -1,0 +1,24 @@
+---
+- name: Create directory for acmetool response file
+  become: true
+  ansible.builtin.file:
+    name: '/var/lib/acme/conf'
+    state: directory
+    owner: root
+    group: root
+    mode: 'u=rwx,g=rx,o=rx'
+
+- name: Copy acmetool response file
+  become: true
+  ansible.builtin.template:
+    src: "{{ lookup('first_found', acmetool__response_file ) }}"
+    dest: '/var/lib/acme/conf/responses'
+    owner: root
+    group: root
+    mode: 'u=rw,g=r,o=r'
+
+- name: Perform acmetool quickstart
+  become: true
+  ansible.builtin.command: acmetool quickstart --expert
+  args:
+    creates: '/var/lib/acme/conf/target'

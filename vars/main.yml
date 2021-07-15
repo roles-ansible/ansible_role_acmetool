@@ -1,4 +1,15 @@
 ---
+acmetool__response_file:
+  files:
+    - "response-file.{{ inventory_hostname }}.yml.j2"
+    - 'response-file.yml.j2'
+  paths:
+    - 'templates/acmetool'
+    - "templates/{{ inventory_hostname }}"
+    - 'files/acmetool'
+    - "files/{{ inventory_hostname }}"
+    - 'templates'
+
 # versionscheck
-playbook_version_number: 25   # should be a integer
+playbook_version_number: 26   # should be a integer
 playbook_version_path: 'do1jlr.role-acmetool.version'

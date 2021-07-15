@@ -1,0 +1,10 @@
+---
+- name: Copy hook to enable acmetool to restart services
+  become: true
+  ansible.builtin.copy:
+    src: 'files/restart'
+    dest: '/etc/acme/hooks/'
+    owner: root
+    group: root
+    mode: 'u=rx,g=rx,o=rx'
+

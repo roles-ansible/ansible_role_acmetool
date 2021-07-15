@@ -3,70 +3,15 @@
   ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
-- name: Install acmetool
-  become: true
-  ansible.builtin.package:
-    name: 'acmetool'
-    state: present
-  tags:
-    - installation
-    - acmetool
+- name: install acmetool
+  ansible.builtin.include_tasks: install.yml
 
-- name: Create directory for acmetool response file
-  become: true
-  ansible.builtin.file:
-    name: '/var/lib/acme/conf'
-    state: directory
-    owner: root
-    group: root
-    mode: 'u=rwx,g=rx,o=rx'
-  tags:
-    - installation
-    - acmetool
-
-- name: Copy acmetool response file
-  become: true
-  ansible.builtin.template:
-    src: 'files/response-file.yml.j2'
-    dest: '/var/lib/acme/conf/responses'
-    owner: root
-    group: root
-    mode: 'u=rw,g=r,o=r'
-  tags:
-    - configuration
-    - acmetool
-    # Todo: with_first_found?
-    # consider usage of loop:
-
-- name: Perform acmetool quickstart
-  become: true
-  ansible.builtin.command: acmetool quickstart --expert
-  args:
-    creates: '/var/lib/acme/conf/target'
-  tags:
-    - configuration
-    - operation
-    - acmetool
+- name: configure acmetool
+  ansible.builtin.include_tasks: configure.yml
 
 - name: Copy hook to enable acmetool to restart services
-  become: true
-  ansible.builtin.copy:
-    src: 'files/restart'
-    dest: '/etc/acme/hooks/'
-    owner: root
-    group: root
-    mode: 'u=rx,g=rx,o=rx'
-  tags:
-    - configuration
-    - acmetool
+  ansible.builtin.include_tasks: hook.yml
 
 - name: Reload systemd and enable acmetool timer unit
-  become: true
-  ansible.builtin.systemd:
-    name: 'acmetool.timer'
-    daemon_reload: true
-    enabled: true
-    state: started
-  tags:
-    - operation
-    - acmetool
+  ansible.builtin.include_tasks: timer.yml
+

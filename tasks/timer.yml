@@ -1,0 +1,8 @@
+---
+- name: Reload systemd and enable acmetool timer unit
+  become: true
+  ansible.builtin.systemd:
+    name: 'acmetool.timer'
+    daemon_reload: true
+    enabled: true
+    state: started

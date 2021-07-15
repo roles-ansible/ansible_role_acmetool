@@ -15,6 +15,22 @@ Install and configure the `acmetool` LE client.
 * ``submodules_versioncheck:`` (Default: ``false``):
   Enable basic versionscheck. *(``true`` is recomended)*
 
+
+ Files
+-------
+* We search the ``response-file.yml.j2`` using the [first_found_loopup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the following config:
+```yaml
+  files:
+    - "response-file.{{ inventory_hostname }}.yml.j2"
+    - 'response-file.yml.j2'
+  paths:
+    - 'templates/acmetool'
+    - "templates/{{ inventory_hostname }}"
+    - 'files/acmetool'
+    - "files/{{ inventory_hostname }}"
+    - 'templates'
+```
+
  References
 ------------
 
