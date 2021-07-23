@@ -14,4 +14,3 @@
 
 - name: Reload systemd and enable acmetool timer unit
   ansible.builtin.include_tasks: timer.yml
-
