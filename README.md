@@ -5,12 +5,21 @@
 
 Install and configure the `acmetool` LE client.
 
+Currently this role is designed to work with the [do1jlr.nginx](https://github.com/do1jlr/ansible_role_nginx.git) ansible role. Maybe there will be a standalone version of this role someday...
+
 
  Variables
 -----------
 
 * ``acme_notification_email:`` (Default: ``root@example.org``):
   LE account email. The default needs to be changed!
+
+* ``acme_reload_services:`` (Default: ``[]``):
+  Services that need a reload by certificat change
+  *(There are some services pre-defined in the [files/reload](files/reload) file)*
+
+* ``acme_restart_services:`` (Default: ``[]``):
+  Services that need a restart by certificat change
 
 * ``submodules_versioncheck:`` (Default: ``false``):
   Enable basic versionscheck. *(``true`` is recomended)*
@@ -30,6 +39,11 @@ Install and configure the `acmetool` LE client.
     - "files/{{ inventory_hostname }}"
     - 'templates'
 ```
+This file is configuring the acmetool behaviour like certificate type, challange methode, acme notification email and so on. Change the values by providing your own ``response-file.yml.j2``.
+
+* We search the ``reload`` and ``restart`` hook using the [first_found_loopup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the config defined in ``vars/main.yml``.
+
+* We deploy the ``acme-reload`` and ``acme-restart`` configuration based on the ``acme_reload_services:`` and ``acme_restart_services:`` variables
 
  References
 ------------

@@ -10,6 +10,28 @@ acmetool__response_file:
     - "files/{{ inventory_hostname }}"
     - 'templates'
 
+acmetool__reload_hook:
+  files:
+    - "{{ inventory_hostname }}.restart"
+    - 'restart'
+  paths:
+    - 'files/acmetool'
+    - "files/{{ inventory_hostname }}"
+    - 'templates/acmetool'
+    - "templates/{{ inventory_hostname }}"
+    - 'files'
+
+acmetool__restart_hook:
+  files:
+    - "{{ inventory_hostname }}.restart"
+    - 'restart'
+  paths:
+    - 'files/acmetool'
+    - "files/{{ inventory_hostname }}"
+    - 'templates/acmetool'
+    - "templates/{{ inventory_hostname }}"
+    - 'files'
+
 # versionscheck
-playbook_version_number: 26   # should be a integer
+playbook_version_number: 27   # should be a integer
 playbook_version_path: 'do1jlr.role-acmetool.version'

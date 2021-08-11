@@ -1,5 +1,9 @@
 ---
 acme_notification_email: 'root@example.org'
 
+# services that need reload or restart
+acme_reload_services: []
+acme_restart_services: []
+
 # should we do a version check? (recomended)
 submodules_versioncheck: false

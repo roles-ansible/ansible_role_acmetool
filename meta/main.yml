@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: acmetool
   author: do1jlr
-  description: Install acmetool and get it working together with the do1jlr.nginx role.
+  description: Install acmetool, an easy-to-use command line tool for automatically acquiring certificates from ACME servers (eg. Let's Encrypt)
   license: "MIT"
   min_ansible_version: 2.11
   github_branch: main

@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+# https://github.com/roles-ansible/ansible_role_acmetool.git
+#
+# reload hook configuration file
+# adding the service to the list of services to be reloaded by acmetool.
+SERVICES="$SERVICES
+  {%- for service in acme_reload_services -%}
+    {{- ' ' -}}
+    {{- service -}}
+  {%- endfor -%}"
