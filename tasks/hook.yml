@@ -34,5 +34,3 @@
     owner: root
     group: root
     mode: 'u=rx,g=rx,o=rx'
-
-- name: Copy hook to enable acmetool to restart services
