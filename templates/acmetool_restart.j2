@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+# https://github.com/roles-ansible/ansible_role_acmetool.git
+#
+# restart hook configuration file
+# adding the service to the list of services to be restarted.
+SERVICES="$SERVICES
+  {%- for service in acme_restart_services -%}
+    {{- ' ' -}}
+    {{- service -}}
+  {%- endfor -%}"
