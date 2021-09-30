@@ -5,6 +5,13 @@ acme_notification_email: 'root@example.org'
 acme_reload_services: []
 acme_restart_services: []
 
+acme_domain_want_list: []
+# - name: 'example.com'
+# - name: 'www.example.com'
+
+acme_domain_unwant_list: []
+# - name: 'old.example.com'
+
 # configure acmetool systemd service
 acme_systemd_start_after: 'apache2.service nginx.service'
 
