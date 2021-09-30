@@ -6,6 +6,9 @@
 - name: install acmetool
   ansible.builtin.include_tasks: install.yml
 
+- name: configure systemd
+  ansible.builtin.include_tasks: systemd.yml
+
 - name: configure acmetool
   ansible.builtin.include_tasks: configure.yml
 
