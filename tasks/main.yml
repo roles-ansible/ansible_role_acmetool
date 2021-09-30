@@ -17,3 +17,9 @@
 
 - name: Reload systemd and enable acmetool timer unit
   ansible.builtin.include_tasks: timer.yml
+
+- name: optionally want domains
+  ansible.builtin.include_tasks: want_domains.yml
+
+- name: optionally unwant domains
+  ansible.builtin.include_tasks: unwant_domains.yml

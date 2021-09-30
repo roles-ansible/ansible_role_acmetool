@@ -1,0 +1,7 @@
+---
+- name: disable acmetool for acme_domain_unwant_list domains
+  become: true
+  ansible.builtin.command: "acmetool unwant {{ _domain.name }}"
+  with_items: "{{ acme_domain_unwant_list }}"
+  loop_control:
+    loop_var: _domain

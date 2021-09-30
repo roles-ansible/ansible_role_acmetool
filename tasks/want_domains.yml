@@ -1,0 +1,9 @@
+---
+- name: enable acmetool for acme_domain_list domains
+  become: true
+  ansible.builtin.command: "acmetool want {{ _domain.name }}"
+  args:
+    creates: "/var/lib/acme/live/{{ _domain.name }}"
+  with_items: "{{ acme_domain_want_list }}"
+  loop_control:
+    loop_var: _domain

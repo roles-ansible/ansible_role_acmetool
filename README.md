@@ -5,7 +5,9 @@
 
 Install and configure the `acmetool` LE client.
 
-Currently this role is designed to work with the [do1jlr.nginx](https://github.com/do1jlr/ansible_role_nginx.git) ansible role. Maybe there will be a standalone version of this role someday...
+We recomend to use this role together with the [do1jlr.nginx](https://github.com/do1jlr/ansible_role_nginx.git) ansible role. But this role has a standalone version too.
+
+The ``do1jlr.nginx`` role installs a hook to enable nginx https sites and is running the ``acmetool want $domain`` command. Or you add the domains you need to the ``acme_domain_want_list: []``. But make sure you your acmetool is able to request the domains. Maybe you want to configure the ``response-file.yml.j2`` for that.
 
 
  Variables
@@ -21,13 +23,23 @@ Currently this role is designed to work with the [do1jlr.nginx](https://github.c
 * ``acme_restart_services:`` (Default: ``[]``):
   Services that need a restart by certificat change
 
+* ``acme_domain_want_list:`` (Default: ``[]``):
+  A list of domain you want to enable. Example:
+```yml
+acme_restart_services:
+  - name: 'www.example.com'
+```
+
+* ``acme_domain_unwant_list:`` (Default: ``[]``):
+  Disable a enabled domain. Same syntax than ``acme_domain_want_list``.
+
 * ``submodules_versioncheck:`` (Default: ``false``):
   Enable basic versionscheck. *(``true`` is recomended)*
 
 
  Files
 -------
-* We search the ``response-file.yml.j2`` using the [first_found_loopup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the following config:
+* We search the ``response-file.yml.j2`` using the [first_found_lookup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the following config:
 ```yaml
   files:
     - "response-file.{{ inventory_hostname }}.yml.j2"
@@ -41,7 +53,7 @@ Currently this role is designed to work with the [do1jlr.nginx](https://github.c
 ```
 This file is configuring the acmetool behaviour like certificate type, challange methode, acme notification email and so on. Change the values by providing your own ``response-file.yml.j2``.
 
-* We search the ``reload`` and ``restart`` hook using the [first_found_loopup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the config defined in ``vars/main.yml``.
+* We search the ``reload`` and ``restart`` hook using the [first_found_lookup](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/first_found_lookup.html) with the config defined in ``vars/main.yml``.
 
 * We deploy the ``acme-reload`` and ``acme-restart`` configuration based on the ``acme_reload_services:`` and ``acme_restart_services:`` variables
 
