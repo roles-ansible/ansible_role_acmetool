@@ -26,7 +26,7 @@ The ``do1jlr.nginx`` role installs a hook to enable nginx https sites and is run
 * ``acme_domain_want_list:`` (Default: ``[]``):
   A list of domain you want to enable. Example:
 ```yml
-acme_restart_services:
+acme_domain_want_list:
   - name: 'www.example.com'
 ```
 
