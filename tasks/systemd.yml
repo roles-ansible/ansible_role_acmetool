@@ -1,0 +1,17 @@
+---
+- name: deploy systemd service file
+  become: true
+  ansible.builtin.template:
+    src: 'templates/acmetool.service.j2'
+    dest: '/lib/systemd/system/acmetool.service'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: systemctl restart acmetool
+
+- name: force systemd to reread configs and start acmetool
+  ansible.builtin.systemd:
+    daemon_reload: true
+    name: 'acmetool.service'
+    state: 'started'
+    enabled: true

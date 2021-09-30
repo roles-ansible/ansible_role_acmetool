@@ -53,7 +53,9 @@ This file is configuring the acmetool behaviour like certificate type, challange
 
  Good to know
 --------------
-If you are using debian buster, you are probably interested in a more up to date version of acmetool. Have a look at the [do1jlr.acmetool_fix](https://galaxy.ansible.com/do1jlr/acmetool_fix) role, that will install a specific version of acmetool on debian based systems.
++ If you are using debian buster, you are probably interested in a more up to date version of acmetool. Have a look at the [do1jlr.acmetool_fix](https://galaxy.ansible.com/do1jlr/acmetool_fix) role, that will install a specific version of acmetool on debian based systems.
++ To add a domain manually to acmetool run ``acmetool want example.com``
++ To remove a domain manually from acmetool, ``acmetool unwant example.com``
 
  Testing
 ---------
