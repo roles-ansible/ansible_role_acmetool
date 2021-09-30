@@ -5,5 +5,8 @@ acme_notification_email: 'root@example.org'
 acme_reload_services: []
 acme_restart_services: []
 
+# configure acmetool systemd service
+acme_systemd_start_after: 'apache2.service nginx.service'
+
 # should we do a version check? (recomended)
 submodules_versioncheck: false

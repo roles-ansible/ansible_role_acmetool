@@ -1,0 +1,7 @@
+---
+- name: systemctl restart acmetool
+  become: true
+  ansible.builtin.systemd:
+    name: 'acmetool.service'
+    state: 'restarted'
+    enabled: true
