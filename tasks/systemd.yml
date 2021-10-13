@@ -9,5 +9,6 @@
     mode: '0644'
 
 - name: force systemd to reread configs and start acmetool
+  become: true
   ansible.builtin.systemd:
     daemon_reload: true
