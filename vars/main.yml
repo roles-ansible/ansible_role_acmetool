@@ -12,8 +12,8 @@ acmetool__response_file:
 
 acmetool__reload_hook:
   files:
-    - "{{ inventory_hostname }}.restart"
-    - 'restart'
+    - "{{ inventory_hostname }}.reload"
+    - 'reload'
   paths:
     - 'files/acmetool'
     - "files/{{ inventory_hostname }}"
@@ -33,5 +33,5 @@ acmetool__restart_hook:
     - 'files'
 
 # versionscheck
-playbook_version_number: 31   # should be a integer
+playbook_version_number: 32   # should be a integer
 playbook_version_path: 'do1jlr.role-acmetool.version'
