@@ -5,3 +5,4 @@
   with_items: "{{ acme_domain_unwant_list }}"
   loop_control:
     loop_var: _domain
+  changed_when: true

@@ -7,8 +7,6 @@ on:
     branches: '*'
   pull_request:
     branches: '*'
-  schedule:
-    - cron: '42 6 * 2,4,6,8,10,12 *'
 
 jobs:
   build:
@@ -16,13 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2
 
       - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+        uses: ansible/ansible-lint-action@v6
         with:
           targets: "."
-          # [required]
-          # Paths to ansible files (i.e., playbooks, tasks, handlers etc..)
-          args: ""
-          # [optional]
