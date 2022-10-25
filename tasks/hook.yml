@@ -2,13 +2,13 @@
 - name: Copy hook to enable acmetool to reload services
   become: true
   ansible.builtin.copy:
-    src: "{{ lookup('first_found', acmetool__reload_hook ) }}"
+    src: "{{ lookup('first_found', acmetool__reload_hook) }}"
     dest: '/etc/acme/hooks/'
     owner: root
     group: root
     mode: 'u=rx,g=rx,o=rx'
 
-- name: create hook configuration to reload services via ansible
+- name: Create hook configuration to reload services via ansible
   become: true
   ansible.builtin.template:
     src: 'templates/acmetool_reload.j2'
@@ -20,13 +20,13 @@
 - name: Copy hook to enable acmetool to restart services
   become: true
   ansible.builtin.copy:
-    src: "{{ lookup('first_found', acmetool__restart_hook ) }}"
+    src: "{{ lookup('first_found', acmetool__restart_hook) }}"
     dest: '/etc/acme/hooks/'
     owner: root
     group: root
     mode: 'u=rx,g=rx,o=rx'
 
-- name: create hook configuration to restart services via ansible
+- name: Create hook configuration to restart services via ansible
   become: true
   ansible.builtin.template:
     src: 'templates/acmetool_restart.j2'

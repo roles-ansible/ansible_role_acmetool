@@ -3,13 +3,13 @@
   ansible.builtin.include_tasks: versioncheck.yml
   when: submodules_versioncheck|bool
 
-- name: install acmetool
+- name: Install acmetool
   ansible.builtin.include_tasks: install.yml
 
-- name: configure systemd
+- name: Configure systemd
   ansible.builtin.include_tasks: systemd.yml
 
-- name: configure acmetool
+- name: Configure acmetool
   ansible.builtin.include_tasks: configure.yml
 
 - name: Copy hook to enable acmetool to restart services
@@ -18,8 +18,8 @@
 - name: Reload systemd and enable acmetool timer unit
   ansible.builtin.include_tasks: timer.yml
 
-- name: optionally want domains
+- name: Optionally want domains
   ansible.builtin.include_tasks: want_domains.yml
 
-- name: optionally unwant domains
+- name: Optionally unwant domains
   ansible.builtin.include_tasks: unwant_domains.yml

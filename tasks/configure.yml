@@ -11,7 +11,7 @@
 - name: Copy acmetool response file
   become: true
   ansible.builtin.template:
-    src: "{{ lookup('first_found', acmetool__response_file ) }}"
+    src: "{{ lookup('first_found', acmetool__response_file) }}"
     dest: '/var/lib/acme/conf/responses'
     owner: root
     group: root

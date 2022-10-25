@@ -4,13 +4,14 @@ galaxy_info:
   author: do1jlr
   description: Install acmetool, an easy-to-use command line tool for automatically acquiring certificates from ACME servers (eg. Let's Encrypt)
   license: "MIT"
-  min_ansible_version: 2.11
-  github_branch: main
+  min_ansible_version: '2.11'
   platforms:
     - name: Debian
-      versions: all
+      versions:
+        - all
     - name: Ubuntu
-      versions: all
+      versions:
+        - all
   galaxy_tags:
     - acmetool
     - acmetool
