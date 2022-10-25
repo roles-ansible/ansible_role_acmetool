@@ -1,5 +1,5 @@
 ---
-- name: enable acmetool for acme_domain_list domains
+- name: Enable acmetool for acme_domain_list domains
   become: true
   ansible.builtin.command: "acmetool want {{ _domain.name }}"
   args:
