@@ -69,12 +69,3 @@ This file is configuring the acmetool behaviour like certificate type, challange
 + To add a domain manually to acmetool run ``acmetool want example.com``
 + To remove a domain manually from acmetool, ``acmetool unwant example.com``
 
- Testing
----------
-We are using the following github actions for testing and releasing to ansible galaxy.
-
-| Action Status | Marketplace |
-| ------------- | ----------- |
-| [![Ansible Lint check](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/ansible-linting-check.yml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/ansible-linting-check.yml) | [ansible-lint](https://github.com/marketplace/actions/ansible-lint) |
-| [![Galaxy release](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/galaxy.yml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/galaxy.yml) | [publish-ansible-role-to-galaxy](https://github.com/marketplace/actions/publish-ansible-role-to-galaxy) |
-| [![Yamllint GitHub Actions](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/yamllint.yaml/badge.svg)](https://github.com/roles-ansible/ansible_role_acmetool/actions/workflows/yamllint.yaml) | [yamllint-github-action](https://github.com/marketplace/actions/yamllint-github-action) |
