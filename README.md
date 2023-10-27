@@ -1,4 +1,4 @@
-[![Ansible Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/do1jlr/acmetool) [![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_acmetool/blob/main/LICENCE)
+[![Ansible Galaxy](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/galaxy.svg?sanitize=true)](https://galaxy.ansible.com/ui/standalone/roles/l3d/acmetool/) [![MIT License](https://raw.githubusercontent.com/roles-ansible/ansible_role_acmetool/main/.github/license.svg?sanitize=true)](https://github.com/roles-ansible/ansible_role_acmetool/blob/main/LICENCE)
 
  Acmetool LE client
 ==================
