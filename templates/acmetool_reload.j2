@@ -3,8 +3,8 @@
 #
 # reload hook configuration file
 # adding the service to the list of services to be reloaded by acmetool.
-SERVICES="$SERVICES
-  {%- for service in acme_reload_services -%}
-    {{- ' ' -}}
-    {{- service -}}
-  {%- endfor -%}"
+{% set services = '' %}
+{% for service in acme_reload_services %}
+{%     set _ = services.extend(' ' ~ service) %}
+{% endfor %}
+SERVICES="$SERVICES {{ services }}"
