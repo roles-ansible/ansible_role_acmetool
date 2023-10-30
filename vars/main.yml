@@ -33,5 +33,5 @@ acmetool__restart_hook:
     - 'files'
 
 # versionscheck
-playbook_version_number: 35   # should be a integer
+playbook_version_number: 36   # should be a integer
 playbook_version_path: 'do1jlr.role-acmetool.version'

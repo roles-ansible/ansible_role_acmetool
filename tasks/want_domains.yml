@@ -4,7 +4,6 @@
   ansible.builtin.command: "acmetool want {{ _domain.name }}"
   args:
     creates: "/var/lib/acme/live/{{ _domain.name }}"
-  loop:
-    - "{{ acme_domain_want_list }}"
   loop_control:
     loop_var: _domain
+  loop: "{{ acme_domain_want_list }}"
