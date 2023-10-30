@@ -3,8 +3,9 @@
 #
 # restart hook configuration file
 # adding the service to the list of services to be restarted.
-SERVICES="$SERVICES
-  {%- for service in acme_restart_services -%}
-    {{- ' ' -}}
-    {{- service -}}
-  {%- endfor -%}"
+{% set services = ['$SERVICES'] %}
+{% for service in acme_restart_services %}
+{%     set _ = services.append(service) %}
+{% endfor %}
+{% set services_string = services | join(' ') %}
+SERVICES="{{ services_string }}"
